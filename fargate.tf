@@ -23,6 +23,12 @@ resource "aws_ecs_service" "nsfw_service" {
         subnets = var.public_subnet_ids
     }
 
+    load_balancer {
+        target_group_arn    = aws_lb_target_group.ecs_tg.arn
+        container_name      = "nsfw-api-container"
+        container_port      = 5000
+    }
+
     lifecycle {
         ignore_changes = [task_definition]
     }
