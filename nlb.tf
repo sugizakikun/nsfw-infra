@@ -1,11 +1,3 @@
-# Elastic IP
-resource "aws_eip" "nlb" {
-    tags = {
-        Name = "elastic ip"
-    }
-}
-
-
 # NLBのターゲットグループを作成
 resource "aws_lb_target_group" "ecs_tg" {
     target_type = "ip"
@@ -30,7 +22,7 @@ resource "aws_lb" "nlb" {
 
     subnet_mapping {
         subnet_id       = var.public_subnet_ids[0]
-        allocation_id   = aws_eip.nlb.id
+        allocation_id   = var.eip_alloc
     }
 }
 
@@ -47,5 +39,5 @@ resource "aws_lb_listener" "nlb_listener" {
 }
 
 output "nlb" {
-    value = aws_eip.nlb
+    value = var.eip_alloc
 }
