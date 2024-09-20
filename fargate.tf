@@ -29,7 +29,7 @@ resource "aws_ecs_service" "nsfw_service" {
     
     network_configuration {
         assign_public_ip = true
-        security_groups = [aws_security_group.nsfw_api_sg.id]
+        security_groups = [module.nsfw_api_sg.security_group_id]
 
         subnets = var.public_subnet_ids
     }
