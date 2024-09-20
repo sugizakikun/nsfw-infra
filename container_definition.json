@@ -1,0 +1,23 @@
+[
+    {
+        "name": "nsfw-api-container",
+        "image": "XXXXXXXXXXXX.dkr.ecr.us-east-1.amazonaws.com/detect-noodie-image:latest",
+        "cpu": 0,
+        "portMappings": [
+            {
+                "name": "5000",
+                "containerPort": 5000,
+                "hostPort": 5000,
+                "protocol": "tcp",
+                "appProtocol": "http"
+            }
+        ],
+        "essential": true,
+        "environment": [
+            {
+                "name": "PORT",
+                "value": "5000"
+            }
+        ]
+    }
+]
